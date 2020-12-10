@@ -1,11 +1,17 @@
+import { SET_USER, UserAction } from './types'
+
 export default function user(state:User = {
   id: 0,
   name: '游客',
   avator: ''
-}, action):User {
+}, action:UserAction):User {
   switch (action.type) {
-    default: {
+    case SET_USER:
+      return {
+        ...state,
+        ...action.payload
+      }
+    default: 
       return state
-    }
   }
 }

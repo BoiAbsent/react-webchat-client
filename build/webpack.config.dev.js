@@ -11,7 +11,7 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css'],
     // alias: {
     //   '@': path_src
     // }
@@ -25,7 +25,21 @@ module.exports = {
     rules: [
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
         loader: 'ts-loader'
+        // loader: 'babel-loader',
+        // options: {
+        //   plugins: [
+        //     [
+        //       '@babel/plugin-transform-react-jsx'
+        //     ]
+        //   ]
+        // },
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ['style-loader', 'css-loader']
         // loader: 'babel-loader',
         // options: {
         //   plugins: [

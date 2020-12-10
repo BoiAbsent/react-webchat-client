@@ -13,21 +13,30 @@ declare interface Message {
   to_id: number,
   from_id: number,
   content: string,
-  create_date: number
+  create_date: number,
+}
+
+declare interface Conversation {
+  mate_id: number,
+  mate_name: string,
+  mate_avator: string,
+  last_msg: string,
+  last_timestamp: number,
+  unread: number,
+  messages: Message[]
 }
 
 declare interface ConversationMap {
-  [propName: string]: Message[]
+  [propName: string]: Conversation
 }
 
-
-declare interface ConversationList {
-  current: number | void,
-  list: ConversationMap
+declare interface ConversationStore {
+  current: keyof ConversationMap | null
+  map: ConversationMap
 }
 
 declare interface StoreState {
   user:User,
   global:Global,
-  conversationList:ConversationList
+  conversationStore:ConversationStore
 }
