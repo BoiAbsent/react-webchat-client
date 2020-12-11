@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useFetchFriends } from './hooks'
 
+const FriendsList: React.FC = () => {
+  useFetchFriends()
 
-const FriendsList: React.FC = (props) => {
   return  (
     <div className="friends">
       

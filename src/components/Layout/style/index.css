@@ -16,7 +16,7 @@
 }
 .side-list {
   width: 280px;
-  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
   background-color: rgb(251, 251, 251);
   z-index: 1;
   position: relative;

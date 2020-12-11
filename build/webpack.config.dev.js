@@ -53,6 +53,13 @@ module.exports = {
   },
   devServer: {
     port: 8888,
-    contentBase: path.resolve(__dirname, '../dist')
+    contentBase: path.resolve(__dirname, '../dist'),
+    proxy: {
+      '/socket.io': {
+        target: 'http://127.0.0.1:3333',
+        ws: true,
+        changeOrigin: true
+      },
+    }
   }
 }

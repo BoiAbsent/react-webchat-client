@@ -4,6 +4,10 @@ declare interface User {
   avator?: string
 }
 
+declare interface Friends {
+  [propName: string]: User
+}
+
 declare interface Global {
   socket: SocketIOClient.Socket | void
 }
@@ -13,13 +17,11 @@ declare interface Message {
   to_id: number,
   from_id: number,
   content: string,
-  create_date: number,
+  create_time: number,
 }
 
 declare interface Conversation {
   mate_id: number,
-  mate_name: string,
-  mate_avator: string,
   last_msg: string,
   last_timestamp: number,
   unread: number,
@@ -31,12 +33,13 @@ declare interface ConversationMap {
 }
 
 declare interface ConversationStore {
-  current: keyof ConversationMap | null
+  current: number | null
   map: ConversationMap
 }
 
 declare interface StoreState {
-  user:User,
-  global:Global,
-  conversationStore:ConversationStore
+  user: User,
+  global: Global,
+  conversationStore: ConversationStore,
+  FrindsListStore: Friends
 }

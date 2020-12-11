@@ -20,7 +20,6 @@ function useCheckSigin() {
         //   dispatch(setUser(data))
         // }
         setTimeout(() => {
-          dispatch(setUser({id: 6}))
           setChecking(false)
         }, 0);
       } catch {}

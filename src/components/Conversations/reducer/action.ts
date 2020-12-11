@@ -7,16 +7,16 @@ export function updateCurrent(current: number): types.UpdateConversationCurrentA
   }
 }
 
-export function addConversations(msg:Message): types.AddConversationsAction {
+export function sendMsgAction(msg:Message): types.SendMsgAction {
   return {
-    type: types.ADD_CONVERSATIONS,
+    type: types.UPDATE_CONVERSATIONS_BY_SEND,
     payload: msg
   }
 }
 
-export function updateConversations(msg:Message): types.UpdateConversationsAction {
+export function receiveMsgAction(msg:Message): types.ReceiveMsgAction {
   return {
-    type: types.UPDATE_CONVERSATIONS,
+    type: types.UPDATE_CONVERSATIONS_BY_REVC,
     payload: msg
   }
 }
