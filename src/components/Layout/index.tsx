@@ -8,19 +8,29 @@ import FriendsList from '../FriendsList'
 import Search from '../Search'
 import { useFetchFriends } from '../FriendsList/hooks'
 import { setSocket, removeSocket } from './reducer/action'
+import { sendMsgAction, receiveMsgAction } from '../Conversations/reducer/action'
 import './style'
 
-export default function Layout(props) {
+export default function Layout() {
   const dispatch = useDispatch()
+  const id = useSelector<StoreState, number>(state => state.user.id)
   useFetchFriends()
   React.useEffect(() => {
-    const socket: SocketIOClient.Socket = io();
-    socket.on('recv_msg',(data: any)=>{
-      console.log(data)
+    const socket: SocketIOClient.Socket = io('/', {
+      port: '3333'
+    });
+    socket.emit('init_link', {
+      id
+    })
+    socket.on('recv_msg',(data: Message)=>{
+      console.log('recv_msg',data)
+      let action = data.to_id == id ? receiveMsgAction : (data.from_id == id ? sendMsgAction : null)
+      if (action) {
+        dispatch(action(data))
+      }
     })
     dispatch(setSocket(socket));
     return () => {
-      console.log('?????')
       socket.close();
       dispatch(removeSocket());
     };

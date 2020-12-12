@@ -12,13 +12,18 @@ const MessageBox: React.FC = () => {
 
   const { mate_id, messages = [] } = conv as Conversation
   const { id, name, avator } = user
-  const mate = useSelector<StoreState, User>(store => store.FrindsListStore[id]) || {}
+  const mate = useSelector<StoreState, User>(store => store.FrindsListStore[mate_id]) || {}
   const { name: mate_name, avator: mate_avator } = mate
 
   const [ targetDom, setTargetDom ] = useState(null)
   useEffect(() => {
     setTargetDom(document.querySelector('#main-content'))
   }, [])
+
+  useEffect(() => {
+    let newMsgDom = document.querySelector('.message-item:last-of-type')
+    newMsgDom && newMsgDom.scrollIntoView && newMsgDom.scrollIntoView()
+  })
 
   const messageContent = (
     <div className="message-box">

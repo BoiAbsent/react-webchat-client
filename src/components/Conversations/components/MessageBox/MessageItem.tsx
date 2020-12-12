@@ -12,7 +12,6 @@ interface MessageItemProps {
 
 const MessageItem: React.FC<MessageItemProps> = (props) => {
   const { mateName, mateAvator, userName, userAvator, msg, type } = props
-  console.log(type)
 
   return (
     type === 'send' ? 
@@ -24,14 +23,14 @@ const MessageItem: React.FC<MessageItemProps> = (props) => {
         <div
           className="message-item-avator"
           style={userAvator ? {'backgroundImage': `url(${userAvator})`} : {}}
-        ></div>
+        >{userAvator ? '' : mateName}</div>
       </div> 
         : 
       <div className="message-item message-item-recv">
         <div
           className="message-item-avator"
           style={mateAvator ? {'backgroundImage': `url(${mateAvator})`} : {}}
-        ></div>
+        >{userAvator ? '' : mateName}</div>
         <div className="message-item-detail">
           {/* <div className="message-item-name">{mateName}</div> */}
           <div className="message-item-content">{msg.content}</div>

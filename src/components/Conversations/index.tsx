@@ -43,7 +43,7 @@ export default function ConversationList() {
           // </div>
         ))}
       </div>
-      <MessageBox/>
+      {current && <MessageBox/>}
     </div>
   )
 }

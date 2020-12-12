@@ -1,7 +1,6 @@
 import * as types from './types'
 
 export default function FriendsListReducer(state:Friends = {}, action:types.FriendsListAction):Friends {
-  console.log(action)
   switch (action.type) {
     case types.UPDATE_FRIEND: {
       return {

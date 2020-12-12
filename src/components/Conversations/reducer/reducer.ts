@@ -1,43 +1,54 @@
 import * as types from './types'
 
 export default function ConversationListReducer(state:ConversationStore = {
-  current: 103,
+  current: null,
   map: {
-    '103': {
-      mate_id: 103,
-      last_msg: '我是103号',
-      last_timestamp: 1607650014754,
-      unread: 0 ,
-      messages: [{
-        id: 1607650014754,
-        to_id: 1,
-        from_id: 103,
-        content: '我是张三',
-        create_time: 1607650014754,
-      }]
-    },
-    '105': {
-      mate_id: 105,
-      last_msg: '我是105号',
-      last_timestamp: 1607650014754,
-      unread: 0 ,
-      messages: [{
-        id: 1607650014754,
-        to_id: 1,
-        from_id: 105,
-        content: '我是王五',
-        create_time: 1607650014754,
-      }]
-    }
+    // '103': {
+    //   mate_id: 103,
+    //   last_msg: '我是103号',
+    //   last_timestamp: 1607650014754,
+    //   unread: 0 ,
+    //   messages: [{
+    //     id: 1607650014754,
+    //     to_id: 101,
+    //     from_id: 103,
+    //     content: '我是张三',
+    //     create_time: 1607650014754,
+    //   }]
+    // },
+    // '105': {
+    //   mate_id: 105,
+    //   last_msg: '我是105号',
+    //   last_timestamp: 1607650014754,
+    //   unread: 0 ,
+    //   messages: [{
+    //     id: 1607650014754,
+    //     to_id: 101,
+    //     from_id: 105,
+    //     content: '我是王五',
+    //     create_time: 1607650014754,
+    //   }]
+    // }
   }
 }, action:types.ConversationAction):ConversationStore {
-  console.log(action)
   switch (action.type) {
     case types.UPDATE_CONVERSATION_CURRENT: {
-      let result = state
+      let result = {
+        ...state
+      }
       if (action.payload != state.current) {
         result.current = action.payload
-        result.map[action.payload].unread = 0
+        if (result.map[action.payload]) {
+          result.map[action.payload].unread = 0 
+        } else {
+          result.map[action.payload] = {
+            mate_id: action.payload,
+            last_msg: '',
+            last_timestamp: 0,
+            unread: 0 ,
+            messages: []
+          }
+        }
       }
       return result
     }
@@ -59,8 +70,6 @@ export default function ConversationListReducer(state:ConversationStore = {
           }
         }
       }
-      console.log(result)
-      console.log(result === state)
       return result
     }
     case  types.UPDATE_CONVERSATIONS_BY_REVC: {

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loading from './components/Loading'
 import Layout from './components/Layout'
 import Login from './components/Login'
-import { setUser } from './store/user/action'
+// import { setUser } from './store/user/action'
 import './App.css'
 
 function useCheckSigin() {
@@ -31,7 +31,7 @@ function useCheckSigin() {
   return checking
 }
 
-export default  function App(props) {
+const App: React.FC = () => {
   const user:User  = useSelector<StoreState>(store => store.user)
   const checking = useCheckSigin()
   return (
@@ -51,3 +51,5 @@ export default  function App(props) {
     </>
   )
 }
+
+export default App

@@ -14,12 +14,6 @@ const MessageSender: React.FC<MessageSenderProps> = (props) => {
   const [ content, setContent ] = useState('')
 
   const sendMsg = () => {
-    console.log({
-      to_id: toId,
-      from_id: userId,
-      content: content,
-      create_time: new Date().getTime(),
-    })
     if (socket && userId && toId) {
       socket.emit('send_msg', {
         to_id: toId,

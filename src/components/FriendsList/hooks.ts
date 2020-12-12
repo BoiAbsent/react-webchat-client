@@ -17,6 +17,11 @@ export const useFetchFriends = () => {
     // })
     setTimeout(() => {
       dispatch(updateFriendsList({
+        '101': {
+          id: 101,
+          name: 'Boi',
+          avator: ''
+        },
         '103': {
           id: 103,
           name: '张三',

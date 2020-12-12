@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import './style'
 
-export default function Nav(props) {
-  const user  = useSelector((state:StoreState) => state.user)
+const Nav:React.FC =  () => {
+  const user  = useSelector<StoreState, User>((state) => state.user)
   return  (
     <div className="nav">
       <div className="nav-name">{user.name}</div>
@@ -15,3 +15,5 @@ export default function Nav(props) {
     </div>
   )
 }
+
+export default Nav

@@ -18,12 +18,16 @@ const ConversationItem: React.FC<ConversationItemProps> = (props) => {
 
   const dispatch = useDispatch() 
 
-  const today = new Date(new Date().setHours(0, 0, 0, 0)).getTime()
-  const yestoday = today - 24 * 60 * 60 * 1000
-  const lastTime = new Date(time).getTime()
-  const showTime = lastTime < yestoday ?  new Date(lastTime).toLocaleDateString() : (
-    lastTime < today ? '昨天' : new Date(lastTime).toLocaleTimeString('chinese', { hour12: false })
-  )
+  let showTime = null
+  if (time) {
+    const today = new Date(new Date().setHours(0, 0, 0, 0)).getTime()
+    const yestoday = today - 24 * 60 * 60 * 1000
+    const lastTime = new Date(time).getTime()
+    showTime = lastTime < yestoday ?  new Date(lastTime).toLocaleDateString() : (
+      lastTime < today ? '昨天' : new Date(lastTime).toLocaleTimeString('chinese', { hour12: false })
+    )
+  }
+  
 
   console.log('render-ConversationItem-', id)
   return (
